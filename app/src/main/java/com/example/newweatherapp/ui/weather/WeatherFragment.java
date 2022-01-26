@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.newweatherapp.base.BaseFragment;
+import com.example.newweatherapp.R;
 import com.example.newweatherapp.common.Resource;
 import com.example.newweatherapp.data.models.WeatherModel;
 import com.example.newweatherapp.databinding.FragmentWeatherBinding;
@@ -24,14 +26,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class WeatherFragment extends Fragment {
 
     private FragmentWeatherBinding binding;
     private WeatherViewModel viewModel;
+    NavController controller;
 
     public WeatherFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().
+                findFragmentById(R.id.nav_host);
+        controller = navHostFragment.getNavController();
     }
 
     @Override
@@ -46,17 +59,27 @@ public class WeatherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initialize();
+        setTransition();
         setUpObserves();
+    }
+
+    private void setTransition() {
+        binding.location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controller.navigate(R.id.action_weatherFragment_to_weatherDetailFragment);
+            }
+        });
     }
 
     private void initialize() {
         viewModel = new ViewModelProvider(requireActivity()).get(WeatherViewModel.class);
-        viewModel.getWeather();
+        viewModel.getWeatherData("Bishkek");
     }
 
 
     protected void setUpObserves() {
-        viewModel.liveData.observe(getViewLifecycleOwner(), new Observer<Resource<WeatherModel>>() {
+        viewModel.getWeatherData(WeatherFragmentArgs.fromBundle(getArguments()).getWeatherCityName()).observe(getViewLifecycleOwner(), new Observer<Resource<WeatherModel>>() {
             @Override
             public void onChanged(Resource<WeatherModel> weatherModelResource) {
                 switch (weatherModelResource.status) {

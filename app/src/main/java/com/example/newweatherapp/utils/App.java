@@ -6,16 +6,13 @@ import com.example.newweatherapp.data.remote.RetrofitClient;
 import com.example.newweatherapp.data.remote.WeatherApi;
 import com.example.newweatherapp.data.repository.WeatherRepository;
 
-public class App extends Application {
+import dagger.hilt.android.HiltAndroidApp;
 
-    public static WeatherApi weatherApi;
-    public static WeatherRepository repository;
+@HiltAndroidApp
+public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        RetrofitClient client = new RetrofitClient();
-        weatherApi = client.provideApi();
-        repository = new WeatherRepository();
     }
 }

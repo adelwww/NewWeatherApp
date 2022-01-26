@@ -1,21 +1,30 @@
 package com.example.newweatherapp.ui.weather;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.newweatherapp.common.Resource;
 import com.example.newweatherapp.data.models.WeatherModel;
-import com.example.newweatherapp.utils.App;
+import com.example.newweatherapp.data.repository.WeatherRepository;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class WeatherViewModel extends ViewModel {
 
     public LiveData<Resource<WeatherModel>> liveData;
+    private WeatherRepository repository;
 
-    public WeatherViewModel() {
+    @Inject
+    public WeatherViewModel(WeatherRepository repository) {
+        this.repository = repository;
     }
 
-    public void getWeather(){
-        liveData= App.repository.getWeather();
+    public MutableLiveData<Resource<WeatherModel>> getWeatherData(String city) {
+        return repository.getWeather(city);
     }
 
 }
