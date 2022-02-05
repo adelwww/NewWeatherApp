@@ -2,19 +2,22 @@
 package com.example.newweatherapp.data.models;
 
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Clouds {
 
-    @SerializedName("all")
-    private Long mAll;
 
-    public Long getAll() {
-        return mAll;
+    @SerializedName("all")
+    @Expose
+    private Integer all;
+
+    public Integer getAll() {
+        return all;
     }
 
-    public void setAll(Long all) {
-        mAll = all;
+    public void setAll(Integer all) {
+        this.all = all;
     }
 
 }

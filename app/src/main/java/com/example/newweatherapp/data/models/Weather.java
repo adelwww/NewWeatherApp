@@ -2,49 +2,53 @@
 package com.example.newweatherapp.data.models;
 
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Weather {
 
-    @SerializedName("description")
-    private String mDescription;
-    @SerializedName("icon")
-    private String mIcon;
     @SerializedName("id")
-    private Long mId;
+    @Expose
+    private Integer id;
     @SerializedName("main")
-    private String mMain;
+    @Expose
+    private String main;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("icon")
+    @Expose
+    private String icon;
 
-    public String getDescription() {
-        return mDescription;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        mDescription = description;
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-    public Long getId() {
-        return mId;
-    }
-
-    public void setId(Long id) {
-        mId = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMain() {
-        return mMain;
+        return main;
     }
 
     public void setMain(String main) {
-        mMain = main;
+        this.main = main;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

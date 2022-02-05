@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.newweatherapp.common.Resource;
+import com.example.newweatherapp.data.models.Weather;
 import com.example.newweatherapp.data.models.WeatherModel;
 import com.example.newweatherapp.data.repository.WeatherRepository;
 
@@ -17,6 +18,8 @@ public class WeatherViewModel extends ViewModel {
 
     public LiveData<Resource<WeatherModel>> liveData;
     private WeatherRepository repository;
+    public LiveData<WeatherModel> localLiveData;
+
 
     @Inject
     public WeatherViewModel(WeatherRepository repository) {
@@ -27,4 +30,7 @@ public class WeatherViewModel extends ViewModel {
         return repository.getWeather(city);
     }
 
+    public void getAll(){
+        localLiveData = repository.getAll();
+    }
 }

@@ -18,7 +18,7 @@ import com.example.newweatherapp.databinding.FragmentWeatherDetailBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class WeatherDetailFragment extends Fragment{
+public class WeatherDetailFragment extends Fragment {
 
     private FragmentWeatherDetailBinding binding;
     NavController controller;
@@ -54,7 +54,7 @@ public class WeatherDetailFragment extends Fragment{
         binding.getCityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              controller.navigate(WeatherDetailFragmentDirections.actionWeatherDetailFragmentToWeatherFragment().setWeatherCityName(binding.searchCity.getText().toString().trim()));
+                controller.navigate(WeatherDetailFragmentDirections.actionWeatherDetailFragmentToWeatherFragment().setWeatherCityName(binding.searchCity.getText().toString().trim()));
             }
         });
     }

@@ -3,69 +3,98 @@ package com.example.newweatherapp.data.models;
 
 
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Main {
 
-    @SerializedName("feels_like")
-    private Double mFeelsLike;
-    @SerializedName("humidity")
-    private Long mHumidity;
-    @SerializedName("pressure")
-    private Long mPressure;
     @SerializedName("temp")
-    private Double mTemp;
-    @SerializedName("temp_max")
-    private Double mTempMax;
+    @Expose
+    private Double temp;
+    @SerializedName("feels_like")
+    @Expose
+    private Double feelsLike;
     @SerializedName("temp_min")
-    private Double mTempMin;
-
-    public Double getFeelsLike() {
-        return mFeelsLike;
-    }
-
-    public void setFeelsLike(Double feelsLike) {
-        mFeelsLike = feelsLike;
-    }
-
-    public Long getHumidity() {
-        return mHumidity;
-    }
-
-    public void setHumidity(Long humidity) {
-        mHumidity = humidity;
-    }
-
-    public Long getPressure() {
-        return mPressure;
-    }
-
-    public void setPressure(Long pressure) {
-        mPressure = pressure;
-    }
+    @Expose
+    private Double tempMin;
+    @SerializedName("temp_max")
+    @Expose
+    private Double tempMax;
+    @SerializedName("pressure")
+    @Expose
+    private Integer pressure;
+    @SerializedName("humidity")
+    @Expose
+    private Integer humidity;
+    @SerializedName("sea_level")
+    @Expose
+    private Integer seaLevel;
+    @SerializedName("grnd_level")
+    @Expose
+    private Integer grndLevel;
 
     public Double getTemp() {
-        return mTemp;
+        return temp;
     }
 
     public void setTemp(Double temp) {
-        mTemp = temp;
+        this.temp = temp;
     }
 
-    public Double getTempMax() {
-        return mTempMax;
+    public Double getFeelsLike() {
+        return feelsLike;
     }
 
-    public void setTempMax(Double tempMax) {
-        mTempMax = tempMax;
+    public void setFeelsLike(Double feelsLike) {
+        this.feelsLike = feelsLike;
     }
 
     public Double getTempMin() {
-        return mTempMin;
+        return tempMin;
     }
 
     public void setTempMin(Double tempMin) {
-        mTempMin = tempMin;
+        this.tempMin = tempMin;
+    }
+
+    public Double getTempMax() {
+        return tempMax;
+    }
+
+    public void setTempMax(Double tempMax) {
+        this.tempMax = tempMax;
+    }
+
+    public Integer getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(Integer pressure) {
+        this.pressure = pressure;
+    }
+
+    public Integer getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(Integer humidity) {
+        this.humidity = humidity;
+    }
+
+    public Integer getSeaLevel() {
+        return seaLevel;
+    }
+
+    public void setSeaLevel(Integer seaLevel) {
+        this.seaLevel = seaLevel;
+    }
+
+    public Integer getGrndLevel() {
+        return grndLevel;
+    }
+
+    public void setGrndLevel(Integer grndLevel) {
+        this.grndLevel = grndLevel;
     }
 
 }

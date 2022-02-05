@@ -1,12 +1,15 @@
 
 package com.example.newweatherapp.data.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
+@Entity
 public class WeatherModel {
 
     @SerializedName("coord")
@@ -14,7 +17,7 @@ public class WeatherModel {
     private Coord coord;
     @SerializedName("weather")
     @Expose
-    private List<Weather> weather = null;
+    private List<Weather> weather;
     @SerializedName("base")
     @Expose
     private String base;
@@ -41,6 +44,7 @@ public class WeatherModel {
     private Integer timezone;
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private Integer id;
     @SerializedName("name")
     @Expose
@@ -152,4 +156,5 @@ public class WeatherModel {
     public void setCod(Integer cod) {
         this.cod = cod;
     }
+
 }

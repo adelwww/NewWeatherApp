@@ -1,9 +1,10 @@
 package com.example.newweatherapp.di;
 
 
-import com.example.newweatherapp.data.remote.RetrofitClient;
+
 import com.example.newweatherapp.data.remote.WeatherApi;
 import com.example.newweatherapp.data.repository.WeatherRepository;
+import com.example.newweatherapp.room.dao.WeatherDao;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,8 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class AppModule {
 
     @Provides
-    public static WeatherRepository provideWeatherRepository(WeatherApi weatherApi) {
-        return new WeatherRepository(weatherApi);
+    public static WeatherRepository provideWeatherRepository(WeatherApi weatherApi, WeatherDao weatherDao) {
+        return new WeatherRepository(weatherApi, weatherDao);
     }
 
     @Provides
@@ -38,6 +39,7 @@ public abstract class AppModule {
                 .client(client)
                 .build();
     }
+
 
     @Provides
     public static OkHttpClient provideOkHttpClient() {
